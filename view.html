@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PARCIAL1</title>
+</head>
+<body>
+
+    <div id="divTable">
+        <label for="tabla-personas">Form datos</label><br>
+        <label for="selector-tipo">Filtrar por: </label>
+        <select name="selector-tipo" id="selector-tipo">
+            <option value="">Todos</option>
+            <option value="Heroe">Heroe</option>
+            <option value="Villano">Villano</option>
+        </select><br>
+        <label for="inputEdadPromedio">Calcular edad promedio</label>
+        <input type="number" id="inputPromedio">
+        <button id="btnCalcularPromedio">Calcular</button><br>
+
+        <label for="check_MostrarColumnas">Mostrar columnas:</label><br>
+       
+        <label for="check_Id">Id</label>
+        <input type="checkbox" name="check_Id" id="check_Id" checked>
+    
+        <label for="check_Nombre">Nombre</label>
+        <input type="checkbox" name="check_Nombre" id="check_Nombre" checked>
+     
+        <label for="check_Apellido">Apellido</label>
+        <input type="checkbox" name="check_Apellido" id="check_Apellido" checked>
+    
+        <label for="check_Edad">Edad</label>
+        <input type="checkbox" name="check_Edad" id="check_Edad" checked>
+     
+        <label for="check_AlterEgo">AlterEgo</label>
+        <input type="checkbox" name="check_AlterEgo" id="check_AlterEgo" checked>
+      
+        <label for="check_Ciudad">Ciudad</label>
+        <input type="checkbox" name="check_Ciudad" id="check_Ciudad" checked><br>
+       
+        <label for="check_Publicado">Publicado</label>
+        <input type="checkbox" name="check_Publicado" id="check_Publicado" checked>
+      
+        <label for="check_Enemigo">Enemigo</label>
+        <input type="checkbox" name="check_Enemigo" id="check_Enemigo" checked>
+
+        <label for="check_Robos">Robos</label>
+        <input type="checkbox" name="check_Robos" id="check_Robos" checked>
+
+        <label for="check_Asesinatos">Asesinatos</label>
+        <input type="checkbox" name="check_Asesinatos" id="check_Asesinatos" checked><br>
+       
+        <table id="tabla-personas">
+            <td><button></button></td>
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Edad</th>
+                <th>AlterEgo</th>
+                <th>Ciudad</th>
+                <th>Publicado</th>
+                <th>Enemigo</th>
+                <th>Robos</th>
+                <th>Asesinatos</th>
+                <th style="display: none;">Tipo</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <button id="btnAgregar">Agregar</button><br>
+
+    <div class="form-container">
+        <form id="formABM">
+    
+            <h2>Formulario ABM</h2>
+    
+            <label for="formAtributoUno">Id:</label>
+            <input type="text" id="formAtributoUno"><br>
+    
+            <label for="formAtributoDos">Nombre:</label>
+            <input type="text" id="formAtributoDos"><br>
+    
+            <label for="formAtributoTres">Apellido:</label>
+            <input type="text" id="formAtributoTres"><br>
+    
+            <label for="formAtributoCuatro">Edad:</label>
+            <input type="text" id="formAtributoCuatro"><br>
+    
+            <label for="formAtributoCinco">AlterEgo:</label>
+            <input type="text" id="formAtributoCinco"><br>
+    
+            <label for="formAtributoSeis">Ciudad:</label>
+            <input type="text" id="formAtributoSeis"><br>
+    
+            <label for="formAtributoSiete">Publicado:</label>
+            <input type="text" id="formAtributoSiete"><br>
+    
+            <label for="formAtributoOcho">Enemigo:</label>
+            <input type="text" id="formAtributoOcho"><br>
+
+            <label for="formAtributoNueve">Robos:</label>
+            <input type="text" id="formAtributoNueve"><br>
+
+            <label for="formAtributoDiez">Asesinatos:</label>
+            <input type="text" id="formAtributoDiez"><br>
+    
+            <label for="formTipo">Tipo:</label>
+            <select id="formTipo">
+                <option value="Heroe">Heroe</option>
+                <option value="Villano">Villano</option>
+            </select><br>
+    
+            <button type="submit" id="btnAceptarForm">Alta</button>
+            <button type="submit" id="btnModificarForm">Modificar</button> 
+            <button id="btnEliminarForm">Eliminar</button>   
+            <button id="btnCancelarForm">Cancelar</button>
+        </form>
+      </div>
+</body>
+<style>
+    #tabla-personas {
+    border: 1px solid black;
+  }
+  
+  thead {
+    background-color: gray;
+    color: white;
+  }
+  
+  tr:nth-child(even) {
+    background-color: lightgray;
+  }
+  
+
+  td {
+    border: 1px solid black;
+  }
+  
+  th {
+    border: 1px solid black;
+    background-color: gray;
+    color: white;
+  }
+  
+  #btnAgregar{
+    margin-top: 3px;
+  }
+
+  /* Estilos para los inputs */
+input[type="text"],
+/* Estilos para los labels */
+#formAtributoUno,#formAtributoDos,#formAtributoTres,#formAtributoCuatro,#formAtributoCinco,#formAtributoSeis,#formAtributoSiete,#formAtributoOcho,
+#formAtributoNueve,#formAtributoDiez,#formTipo{
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  font-size: 18px;
+  font-family: Arial, sans-serif;
+}
+
+/* Estilos para los botones */
+#btnAceptarForm,#btnModificarForm,#btnEliminarForm,#btnCancelarForm {
+  background-color: #4CAF50;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+}
+
+button:hover {
+  background-color:darkkhaki;
+}
+
+/* Estilos para el formulario */
+#formABM {
+  max-width: 15px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  border: black;
+}
+
+</style>
+
+<script>
+var datos = '[{"id":1,"nombre":"Clark","apellido":"Kent","edad":45,"alterego":"Superman","ciudad":"Metropolis","publicado":2002}';
+datos += ',{"id":2,"nombre":"Bruce","apellido":"Wayne","edad":35,"alterego":"Batman","ciudad":"Gotica","publicado":20012}';
+datos += ',{"id":3,"nombre":"Bart","apellido":"Alen","edad":30,"alterego":"Flash","ciudad":"Central","publicado":2017}';
+datos += ',{"id":4,"nombre":"Lex","apellido":"Luthor","edad":18,"enemigo":"Superman","robos":500,"asesinatos":7}';
+datos += ',{"id":5,"nombre":"Harvey","apellido":"Dent","edad":20,"enemigo":"Batman","robos":750,"asesinatos":2}';
+datos += ',{"id":666,"nombre":"Celina","apellido":"kyle","edad":23,"enemigo":"Batman","robos":25,"asesinatos":1}]';
+
+var arrayPersonas = JSON.parse(datos);
+
+document.addEventListener("DOMContentLoaded", () =>{
+
+        //Obtengo el formulario ABM y luego lo oculto (solo se mostrara cuando se quiera agregar una persona con formABM.style.display = 'table-row';)
+        var formABM = document.getElementById("formABM");
+        formABM.style.display = 'none';
+        var tabla = document.getElementById('tabla-personas');
+    
+        cargarTabla(arrayPersonas);
+
+        //Obtengo el selector de filtros y filtro por lo seleccionado
+        var selectorTipo = document.querySelector('#selector-tipo');
+        filtrar(selectorTipo);
+
+        //Evento click para calcular la edad del tipo de persona por la que se selecciono en el filtro (Empleado, Cliente, TODOS)
+        var btnCalcularEdadPromedio = document.getElementById("btnCalcularPromedio");
+        btnCalcularEdadPromedio.addEventListener("click", ()=>{
+            CalcularEdadPromedio(selectorTipo);
+        });
+
+        MostrarOcultarColumnas();
+
+        //Cargo los datos en el formABM al darle click a una fila
+        var rows = document.querySelectorAll('#tabla-personas tr');
+        tabla.style.display = 'none';
+        CargarFormABMAlSeleccionarFila(rows);
+
+
+        
+        //Muestra el formulario al tocar el boton agregar y oculto la tabla
+        document.getElementById("btnAgregar").addEventListener("click", ()=>{
+            tabla.style.display = 'none';
+            document.getElementById("formABM").style.display = "block";
+        })
+
+        //ABM
+        document.getElementById("formABM").addEventListener("submit", function(event) {
+            event.preventDefault(); // evita que se recargue la página al enviar el formulario
+            ABM(tabla);
+            document.getElementById("formABM").reset();
+        });
+
+        document.getElementById("btnModificarForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // evita que se recargue la página al enviar el formulario
+            ABM(tabla);
+            document.getElementById("formABM").reset();
+        });
+
+        document.getElementById("btnEliminarForm").addEventListener("click", function(event) {
+            event.preventDefault(); // evita que se recargue la página al enviar el formulario
+            EliminarPersona(tabla);
+            document.getElementById("formABM").reset();
+        });
+
+        document.getElementById("btnCancelarForm").addEventListener("click", function(event) {
+            event.preventDefault(); // evita que se recargue la página al enviar el formulario
+            formABM.style.display = 'none';
+            tabla.style.display = '';
+            cargarTabla(arrayPersonas);
+        });
+
+
+    });
+
+//#region CARGAR TABLA
+function cargarTabla(personas) {
+    const tbody = document.querySelector('#tabla-personas tbody');
+    
+    // Limpiar el contenido previo de la tabla
+    tbody.innerHTML = '';
+    
+    // Recorrer las personas y agregar una fila por cada una
+    personas.forEach(persona => {
+      const tr = document.createElement('tr');
+
+      const idTd = document.createElement('td');
+      idTd.textContent = persona.id;
+      tr.appendChild(idTd);
+      
+      const nombreTd = document.createElement('td');
+      nombreTd.textContent = persona.nombre;
+      tr.appendChild(nombreTd);
+      
+      const apellidoTd = document.createElement('td');
+      apellidoTd.textContent = persona.apellido;
+      tr.appendChild(apellidoTd);
+      
+      const edadTd = document.createElement('td');
+      edadTd.textContent = persona.edad;
+      tr.appendChild(edadTd);
+
+      const alterEgoTd = document.createElement('td');
+      alterEgoTd.textContent = persona.alterego;
+      tr.appendChild(alterEgoTd);
+
+      const ciudadTd = document.createElement('td');
+      ciudadTd.textContent = persona.ciudad;
+      tr.appendChild(ciudadTd);
+
+      const publicadoTd = document.createElement('td');
+      publicadoTd.textContent = persona.publicado;
+      tr.appendChild(publicadoTd);
+
+      const enemigoTd = document.createElement('td');
+      enemigoTd.textContent = persona.enemigo;
+      tr.appendChild(enemigoTd);
+
+      const robosTd = document.createElement('td');
+      robosTd.textContent = persona.robos;
+      tr.appendChild(robosTd);
+
+      const asesinatosTd = document.createElement('td');
+      asesinatosTd.textContent = persona.asesinatos;
+      tr.appendChild(asesinatosTd);
+
+      //Creo una fila con el tipo de persona y la oculto para que no se vea en la tabla. Es para hacer el filtrado luego.
+      const tipoTd = document.createElement('td');
+      tipoTd.textContent = persona.enemigo === undefined && persona.robos === undefined && persona.asesinatos === undefined  ? "Heroe" : "Villano";
+      tr.appendChild(tipoTd);
+      tipoTd.style.display = 'none';
+      
+      tbody.appendChild(tr);
+    });
+}
+
+//#endregion
+
+//#region  CALCULAR EDAD PROMEDIO
+function CalcularEdadPromedio(selectorTipo)
+{
+    var filtroSeleccionado = selectorTipo.options[selectorTipo.selectedIndex].value;
+
+    switch(filtroSeleccionado)
+    {
+        case "Heroe":
+            var heroes = arrayPersonas.filter(persona => persona.enemigo === undefined && persona.robos === undefined && persona.asesinatos === undefined);
+            var promedioEdadHeroes = heroes.reduce((acumulador, heroe) => {return acumulador + heroe.edad;}, 0) / heroes.length;
+            inputPromedio.value = promedioEdadHeroes;
+        break;
+        case "Villano":
+            var villanos = arrayPersonas.filter(persona => persona.alterego === undefined && persona.ciudad === undefined && persona.publicado === undefined);
+            var promedioEdadVillanos = villanos.reduce((acumulador, villano) => {return acumulador + villano.edad;}, 0) / villanos.length;
+            inputPromedio.value = promedioEdadVillanos;
+        break;
+        default:
+            var personas = arrayPersonas.filter(persona => persona.edad != undefined || persona.edad != 0);
+            //FIJARSE COMO PODER USAR MAP() ACA
+            var promedioEdadParaTodos = personas.reduce((acumulador, persona) => {return acumulador + persona.edad;}, 0) / personas.length;
+            inputPromedio.value = promedioEdadParaTodos;
+        break;
+    } 
+}
+
+//#endregion
+
+//#region FILTRO
+
+function filtrar(selectorTipo)
+{
+    selectorTipo.addEventListener('change', () => 
+    {
+        const tipoSeleccionado = selectorTipo.value;
+        
+        if (!tipoSeleccionado)
+        {
+            // Mostrar todas las filas si no hay un tipo seleccionado
+            const filas = document.querySelectorAll('#tabla-personas tbody tr');
+            filas.forEach(fila => fila.style.display = '');
+        } 
+        else
+        {
+            // Ocultar las filas que no coinciden con el tipo seleccionado
+            const filas = document.querySelectorAll('#tabla-personas tbody tr');
+            
+            filas.forEach(fila => 
+            {
+                //Obtengo la fila oculta "tipo" de la tabla, y comparo el tipo de la fila con el tipo seleccionado en el filtro
+                const tipo = fila.querySelector('td:nth-child(11)').textContent;
+                if (tipo !== tipoSeleccionado) 
+                {
+                    fila.style.display = 'none';
+                }
+                else 
+                {
+                    fila.style.display = '';
+                }
+            });
+        }
+    });
+}
+
+//#endregion
+
+//#region MOSTRAR U OCULTAR COLUMNAS SEGUN LOS CHECKS
+function MostrarOcultarColumnas()
+{
+    var check_Id = document.querySelector('#check_Id');
+    var columnaId = document.querySelectorAll('#tabla-personas td:nth-child(1), #tabla-personas th:nth-child(1)');
+
+    var check_Nombre = document.querySelector('#check_Nombre');
+    var columnaNombre = document.querySelectorAll('#tabla-personas td:nth-child(2), #tabla-personas th:nth-child(2)');
+
+    var check_Apellido = document.querySelector('#check_Apellido');
+    var columnaApellido = document.querySelectorAll('#tabla-personas td:nth-child(3), #tabla-personas th:nth-child(3)');
+
+    var check_Edad = document.querySelector('#check_Edad');
+    var columnaEdad = document.querySelectorAll('#tabla-personas td:nth-child(4), #tabla-personas th:nth-child(4)');
+
+    var check_AlterEgo = document.querySelector('#check_AlterEgo');
+    var columnaAlterEgo = document.querySelectorAll('#tabla-personas td:nth-child(5), #tabla-personas th:nth-child(5)');
+
+    var check_Ciudad = document.querySelector('#check_Ciudad');
+    var columnaCiudad = document.querySelectorAll('#tabla-personas td:nth-child(6), #tabla-personas th:nth-child(6)');
+
+    var check_Publicado = document.querySelector('#check_Publicado');
+    var columnaPublicado = document.querySelectorAll('#tabla-personas td:nth-child(7), #tabla-personas th:nth-child(7)');
+
+    var check_Enemigo = document.querySelector('#check_Enemigo');
+    var columnaEnemigo = document.querySelectorAll('#tabla-personas td:nth-child(8), #tabla-personas th:nth-child(8)');
+
+    var check_Robos = document.querySelector('#check_Robos');
+    var columnaRobos = document.querySelectorAll('#tabla-personas td:nth-child(9), #tabla-personas th:nth-child(9)');
+
+    var check_Asesinatos = document.querySelector('#check_Asesinatos');
+    var columnaAsesinatos = document.querySelectorAll('#tabla-personas td:nth-child(10), #tabla-personas th:nth-child(10)');
+
+    check_Id.addEventListener('change', () => {
+        columnaId.forEach(ids => {
+            ids.style.visibility = check_Id.checked ? "" : "hidden";
+        });
+    });
+
+    check_Nombre.addEventListener('change', () => {
+        columnaNombre.forEach(nombre => {
+            nombre.style.visibility = check_Nombre.checked ? "" : "hidden";
+        });
+    });
+
+    check_Apellido.addEventListener('change', () => {
+        columnaApellido.forEach(apellido => {
+            apellido.style.visibility = check_Apellido.checked ? "" : "hidden";
+        });
+    });
+
+    check_Edad.addEventListener('change', () => {
+        columnaEdad.forEach(edad => {
+            edad.style.visibility = check_Edad.checked ? "" : "hidden";
+        });
+    });
+
+    check_AlterEgo.addEventListener('change', () => {
+        columnaAlterEgo.forEach(alterEgo => {
+            alterEgo.style.visibility = check_AlterEgo.checked ? "" : "hidden";
+        });
+    });
+
+    check_Ciudad.addEventListener('change', () => {
+        columnaCiudad.forEach(ciudad => {
+            ciudad.style.visibility = check_Ciudad.checked ? "" : "hidden";
+        });
+    });
+
+    check_Publicado.addEventListener('change', () => {
+        columnaPublicado.forEach(publicado => {
+            publicado.style.visibility = check_Publicado.checked ? "" : "hidden";
+        });
+    });
+
+    check_Enemigo.addEventListener('change', () => {
+        columnaEnemigo.forEach(enemigo => {
+            enemigo.style.visibility = check_Enemigo.checked ? "" : "hidden";
+        });
+    });
+
+    check_Robos.addEventListener('change', () => {
+        columnaRobos.forEach(robos => {
+            robos.style.visibility = check_Robos.checked ? "" : "hidden";
+        });
+    });
+
+    check_Asesinatos.addEventListener('change', () => {
+        columnaAsesinatos.forEach(asesinatos => {
+            asesinatos.style.visibility = check_Asesinatos.checked ? "" : "hidden";
+        });
+    });
+}
+
+//#endregion
+
+//#region COMPLETAR CAMPOS DEL FORMULARIO ABM
+
+function CargarFormABMAlSeleccionarFila(rows)
+{
+    var tabla = document.getElementById('tabla-personas');
+
+    rows.forEach(row => {
+        row.addEventListener('click', () => {
+
+          formABM.style.display = '';
+          tabla.style.display = 'none';
+
+          let cells = row.querySelectorAll('td'); //Obtengo los datos de la fila seleccionada
+          let data = []; 
+      
+          //Guardo todos los datos de la fila seleccionada en un array 
+          cells.forEach(cell => {
+            data.push(cell.textContent);
+          });
+      
+
+          //Obtengo los elementos, componentes del formulario donde se tienen que plasmar los datos seleccionados
+          let inputId = document.querySelector('#formAtributoUno');
+          let inputNombre = document.querySelector('#formAtributoDos');
+          let inputApellido = document.querySelector('#formAtributoTres');
+          let inputEdad = document.querySelector('#formAtributoCuatro');
+          let inputAlterEgo = document.querySelector('#formAtributoCinco');
+          let inputCiudad = document.querySelector('#formAtributoSeis');
+          let inputPublicado = document.querySelector('#formAtributoSiete');
+          let inputEnemigo = document.querySelector('#formAtributoOcho');
+          let inputRobos = document.querySelector('#formAtributoNueve');
+          let inputAsesinatos = document.querySelector('#formAtributoDiez');
+
+          let selectTipo = document.querySelector('#formTipo');
+      
+            //Plasmo en el FORM, los datos de la fila seleccionada
+            inputId.value = data[0];
+            inputNombre.value = data[1];
+            inputApellido.value = data[2];
+            inputEdad.value = data[3];
+            inputAlterEgo.value = data[4];
+            inputCiudad.value = data[5];
+            inputPublicado.value = data[6];
+            inputEnemigo.value = data[7];
+            inputRobos.value = data[8];
+            inputAsesinatos.value = data[9];
+            selectTipo.value = data[10];
+        });
+        formABM.style.display = 'none';
+        tabla.style.display = '';
+    });
+}
+
+//#endregion
+
+
+//#region ABM
+
+function ABM(tabla)
+{
+    let inputId = document.getElementById('formAtributoUno').value;
+    let idNumerico = parseInt(inputId);
+    let inputNombre = document.getElementById('formAtributoDos').value;
+    let inputApellido = document.getElementById('formAtributoTres').value;
+    let inputEdad = document.getElementById('formAtributoCuatro').value;
+    let inputAlterEgo = document.getElementById('formAtributoCinco').value;
+    let inputCiudad = document.getElementById('formAtributoSeis').value;
+    let inputPublicado = document.getElementById('formAtributoSiete').value;
+    let inputEnemigo = document.getElementById('formAtributoOcho').value;
+    let inputRobos = document.getElementById('formAtributoNueve').value;
+    let inputAsesinatos = document.getElementById('formAtributoDiez').value;
+
+    let selector = document.getElementById('formTipo');
+
+    if(selector.value === "Heroe")
+    {
+        if(inputAlterEgo === undefined || inputAlterEgo === null || inputAlterEgo === "")
+        {
+            alert("Campo obligatorio (AlterEgo)");
+        }
+
+        if(inputCiudad === undefined || inputCiudad === null || inputCiudad === "")
+        {
+            alert("Campo obligatorio (Ciudad)");
+        }
+
+        if(inputPublicado === undefined || inputPublicado === null || inputPublicado === "")
+        {
+            alert("Campo obligatorio (Publicado)");
+        }
+    }
+    else
+    {
+        if(inputEnemigo === undefined || inputEnemigo === null || inputEnemigo === "")
+        {
+            alert("Campo obligatorio (Enemigo)");
+        }
+
+        if(inputRobos === undefined || inputRobos === null || inputRobos === "")
+        {
+            alert("Campo obligatorio (Robos)");
+        }
+
+        if(inputAsesinatos === undefined || inputAsesinatos === null || inputAsesinatos === "")
+        {
+            alert("Campo obligatorio (Asesinatos)");
+        }
+    }
+
+    var index = arrayPersonas.findIndex(persona => persona.id === idNumerico);
+
+    if (index !== -1)
+    {
+        arrayPersonas[index].id = inputId;
+        arrayPersonas[index].nombre = inputNombre;
+        arrayPersonas[index].apellido = inputApellido;
+        arrayPersonas[index].edad = inputEdad;
+        arrayPersonas[index].alterEgo = inputAlterEgo;
+        arrayPersonas[index].ciudad = inputCiudad;
+        arrayPersonas[index].publicado = inputPublicado;
+        arrayPersonas[index].enemigo = inputEnemigo;
+        arrayPersonas[index].robos = inputRobos;
+        arrayPersonas[index].asesinatos = inputAsesinatos;
+    }
+    else 
+    {
+        var persona = {
+            "id": inputId,
+            "nombre": inputNombre,
+            "apellido": inputApellido,
+            "edad": inputEdad,
+            "alterego": inputAlterEgo,
+            "ciudad": inputCiudad,
+            "publicado": inputPublicado,
+            "enemigo": inputEnemigo,
+            "robos": inputRobos,
+            "asesinatos": inputAsesinatos
+        };
+
+        arrayPersonas.push(persona); // agrega la persona al array
+    }
+
+    //Muestro la tabla de vuelta, oculto el formulario y la cargo nuevamente
+    formABM.style.display = 'none';
+    tabla.style.display = '';
+    cargarTabla(arrayPersonas);
+}
+
+//#endregion
+
+//#region Eliminar
+
+function EliminarPersona(tabla)
+{
+    let inputId = document.getElementById('formAtributoUno').value;
+    let idNumerico = parseInt(inputId);
+    
+    var index = arrayPersonas.findIndex(persona => persona.id === idNumerico);
+    if (index !== -1)
+    {
+        arrayPersonas.splice(index, 1);
+    }
+    else 
+    {
+        alert("La persona que desea eliminar, no existe... Por favor, vuelta a intentarlo");
+    }
+
+    //Muestro la tabla de vuelta, oculto el formulario y la cargo nuevamente
+    formABM.style.display = 'none';
+    tabla.style.display = '';
+    cargarTabla(arrayPersonas);
+}
+
+//#endregion
+
+
+
+
+//#region Clases
+
+class Persona
+{
+    id
+    nombre;
+    apellido;
+    edad;
+
+    constructor(id,nombre,apellido,edad)
+    {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.edad = edad;
+    }
+
+}
+class Heroe extends Persona
+{
+    alterego;
+    ciudad;
+    publicado;
+
+    constructor(id,nombre,apellido,alterego,ciudad,publicado)
+    {
+        super(id,nombre,apellido,edad);
+        this.alterego = alterego;
+        this.ciudad = ciudad;
+        this.publicado = publicado;
+    }
+}
+class Villano extends Persona
+{
+    enemigo;
+    robos;
+    asesinatos;
+
+    constructor(id,nombre,apellido,edad,enemigo,robos,asesinatos)
+    {
+        super(id,nombre,apellido,edad);
+        this.enemigo = enemigo;
+        this.robos = robos;
+        this.asesinatos = asesinatos;
+    }
+}
+
+//#endregion
+
+</script>
+
+</html>

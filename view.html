@@ -614,8 +614,12 @@ function ABM(tabla)
     }
     else 
     {
+        if(idNumerico != undefined || idNumerico != null)
+        {
+            alert("No debe ingresar el campo id!");
+        }
+
         var persona = {
-            "id": inputId,
             "nombre": inputNombre,
             "apellido": inputApellido,
             "edad": inputEdad,

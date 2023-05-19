@@ -20,7 +20,7 @@
         <input type="number" id="inputPromedio">
         <button id="btnCalcularPromedio">Calcular</button><br>
 
-        <label for="check_MostrarColumnas">Mostrar columnas:</label><br>
+        <label for="check_MostrarColumnas">Mostrar columnas:</label><br><br>
        
         <label for="check_Id">Id</label>
         <input type="checkbox" name="check_Id" id="check_Id" checked>
@@ -50,22 +50,34 @@
         <input type="checkbox" name="check_Robos" id="check_Robos" checked>
 
         <label for="check_Asesinatos">Asesinatos</label>
-        <input type="checkbox" name="check_Asesinatos" id="check_Asesinatos" checked><br>
+        <input type="checkbox" name="check_Asesinatos" id="check_Asesinatos" checked><br><br>
+
+        <label>Ordenar por:</label><br><br>
+
+        <button id="btnOrdenarId">id</button>
+        <button id="btnOrdenarNombre">nombre</button>
+        <button id="btnOrdenarApellido">apellido</button>
+        <button id="btnOrdenarEdad">edad</button>
+        <button id="btnOrdenarAlterEgo">alterego</button>
+        <button id="btnOrdenarCiudad">ciudad</button>
+        <button id="btnOrdenarPublicado">publicado</button>
+        <button id="btnOrdenarEnemigos">enemigos</button>
+        <button id="btnOrdenarRobos">robos</button>
+        <button id="btnOrdenarAsesinatos">asesinatos</button>
        
         <table id="tabla-personas">
-            <td><button></button></td>
             <thead>
               <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Edad</th>
-                <th>AlterEgo</th>
-                <th>Ciudad</th>
-                <th>Publicado</th>
-                <th>Enemigo</th>
-                <th>Robos</th>
-                <th>Asesinatos</th>
+                <th data-ordenId="asc">Id</th>
+                <th data-ordenNombre="asc">Nombre</th>
+                <th data-ordenApellido="asc">Apellido</th>
+                <th data-ordenEdad="asc">Edad</th>
+                <th data-ordenAlterEgo="asc">AlterEgo</th>
+                <th data-ordenCiudad="asc">Ciudad</th>
+                <th data-ordenPublicado="asc">Publicado</th>
+                <th data-ordenEnemigo="asc">Enemigo</th>
+                <th data-ordenRobos="asc">Robos</th>
+                <th data-ordenAsesinatos="asc">Asesinatos</th>
                 <th style="display: none;">Tipo</th>
               </tr>
             </thead>
@@ -124,69 +136,93 @@
       </div>
 </body>
 <style>
-    #tabla-personas {
-    border: 1px solid black;
-  }
-  
-  thead {
-    background-color: gray;
-    color: white;
-  }
-  
-  tr:nth-child(even) {
-    background-color: lightgray;
-  }
-  
+    /* Estilos para el contenedor principal */
+#divTable {
+  margin: 20px;
+}
 
-  td {
-    border: 1px solid black;
-  }
-  
-  th {
-    border: 1px solid black;
-    background-color: gray;
-    color: white;
-  }
-  
-  #btnAgregar{
-    margin-top: 3px;
-  }
-
-  /* Estilos para los inputs */
-input[type="text"],
-/* Estilos para los labels */
-#formAtributoUno,#formAtributoDos,#formAtributoTres,#formAtributoCuatro,#formAtributoCinco,#formAtributoSeis,#formAtributoSiete,#formAtributoOcho,
-#formAtributoNueve,#formAtributoDiez,#formTipo{
-  display: block;
-  margin-bottom: 8px;
-  font-weight: bold;
+/* Estilos para la etiqueta de la tabla y el selector de tipo */
+#divTable label {
   font-size: 18px;
-  font-family: Arial, sans-serif;
+  font-weight: bold;
 }
 
-/* Estilos para los botones */
-#btnAceptarForm,#btnModificarForm,#btnEliminarForm,#btnCancelarForm {
-  background-color: #4CAF50;
-  color: white;
-  padding: 8px 16px;
+#divTable #selector-tipo {
+  margin-bottom: 10px;
+}
+
+/* Estilos para los checkboxes y botones */
+#divTable input[type="checkbox"],
+#divTable button {
+  margin-right: 10px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  padding: 8px 12px;
   border: none;
-  border-radius: 4px;
+  background-color: #18cea1;
+  color: #fff;
   cursor: pointer;
-  font-size: 16px;
-  font-family: Arial, sans-serif;
 }
 
-button:hover {
-  background-color:darkkhaki;
+#divTable input[type="checkbox"]:checked + label:before {
+  background-color: #a1c4f2;
+  border-color: #a1c4f2;
 }
 
-/* Estilos para el formulario */
-#formABM {
-  max-width: 15px;
-  margin: 0 auto;
-  font-family: Arial, sans-serif;
-  border: black;
+/* Estilos para la tabla */
+#divTable table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
 }
+
+#divTable th,
+#divTable td {
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #ccc;
+}
+
+#divTable th {
+  background-color: #f2f2f2;
+}
+
+/* Estilos para el formulario ABM */
+.form-container {
+  margin: 20px;
+  padding: 20px;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+}
+
+.form-container h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.form-container label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.form-container input[type="text"],
+.form-container select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.form-container button {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #18cea1;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
 
 </style>
 
@@ -202,66 +238,265 @@ var arrayPersonas = JSON.parse(datos);
 
 document.addEventListener("DOMContentLoaded", () =>{
 
-        //Obtengo el formulario ABM y luego lo oculto (solo se mostrara cuando se quiera agregar una persona con formABM.style.display = 'table-row';)
-        var formABM = document.getElementById("formABM");
-        formABM.style.display = 'none';
-        var tabla = document.getElementById('tabla-personas');
+    //Obtengo el formulario ABM y luego lo oculto (solo se mostrara cuando se quiera agregar una persona con formABM.style.display = 'table-row';)
+    var formABM = document.getElementById("formABM");
+    var tabla = document.getElementById('tabla-personas');
+
+    cargarTabla(arrayPersonas);
+    formABM.style.display = 'none';
+
+    //Obtengo el selector de filtros y filtro por lo seleccionado
+    var selectorTipo = document.querySelector('#selector-tipo');
+    filtrar(selectorTipo);
+
+    //Evento click para calcular la edad del tipo de persona por la que se selecciono en el filtro (Empleado, Cliente, TODOS)
+    var btnCalcularEdadPromedio = document.getElementById("btnCalcularPromedio");
+    btnCalcularEdadPromedio.addEventListener("click", ()=>{
+        CalcularEdadPromedio(selectorTipo);
+    });
+
+    MostrarOcultarColumnas();
+
+    //Cargo los datos en el formABM al darle click a una fila
+    var rows = document.querySelectorAll('#tabla-personas tr');
+    rows.forEach(fila => 
+    {
+        fila.addEventListener('click', () =>
+        {
+            // Obtener el elemento <input> por su ID
+            var campoId = document.getElementById('formAtributoUno');
+            // Deshabilitar el elemento
+            campoId.disabled = true;
+
+            CargarFormABMAlSeleccionarFila(fila);
+
+            if (getComputedStyle(tabla).display !== 'none') //Pregunta si la tabla NO ESTA OCULTA
+            {
+                tabla.style.display = 'none'; //Se oculta la tabla
+            }
+            else
+            {
+                console.log("La tabla esta oculta I");
+            } 
+
+            if (getComputedStyle(formABM).display === 'none') //Pregunta si el form ESTA OCULTO
+            {
+                formABM.style.display = ''; //Se muestra el formulario
+            }
+            else
+            {
+                console.log("El FORM esta oculto I");
+            } 
+        });
+    });
     
-        cargarTabla(arrayPersonas);
+    //Muestra el formulario al tocar el boton agregar
+    document.getElementById("btnAgregar").addEventListener("click", ()=>
+    {
+        var campoId = document.getElementById('formAtributoUno');
+        // Deshabilitar el elemento
+        if(campoId.disabled)
+        {
+            campoId.disabled = false;
+        }
 
-        //Obtengo el selector de filtros y filtro por lo seleccionado
-        var selectorTipo = document.querySelector('#selector-tipo');
-        filtrar(selectorTipo);
+        if (getComputedStyle(tabla).display !== 'none') //Pregunta si la tabla NO ESTA OCULTA
+        {
+            tabla.style.display = 'none'; //Se oculta la tabla
+        }
+        else
+        {
+            console.log("La tabla esta oculta II");
+        }  
 
-        //Evento click para calcular la edad del tipo de persona por la que se selecciono en el filtro (Empleado, Cliente, TODOS)
-        var btnCalcularEdadPromedio = document.getElementById("btnCalcularPromedio");
-        btnCalcularEdadPromedio.addEventListener("click", ()=>{
-            CalcularEdadPromedio(selectorTipo);
+        if (getComputedStyle(formABM).display === 'none') //Pregunta si el form ESTA OCULTO
+        {
+            formABM.style.display = ''; //Se muestra el formulario
+        }
+        else
+        {
+            console.log("El FORM esta oculto II");
+        }  
+    })
+
+    //ABM
+    document.getElementById("formABM").addEventListener("submit", function(event) {
+        event.preventDefault(); // evita que se recargue la página al enviar el formulario
+        ABM(tabla);
+        document.getElementById("formABM").reset(); //Limpia los campos del formulario
+
+        var rows = document.querySelectorAll('#tabla-personas tr');
+        rows.forEach(fila => 
+        {
+            fila.addEventListener('click', () =>
+            {
+                CargarFormABMAlSeleccionarFila(fila);
+
+                var campoId = document.getElementById('formAtributoUno');
+                if(!campoId.disabled)
+                {
+                    campoId.disabled = true;
+                }
+
+                if (getComputedStyle(tabla).display !== 'none') //Pregunta si la tabla NO ESTA OCULTA
+                {
+                    tabla.style.display = 'none'; //Se oculta la tabla
+                }
+                else
+                {
+                    console.log("La tabla esta oculta I");
+                } 
+
+                if (getComputedStyle(formABM).display === 'none') //Pregunta si el form ESTA OCULTO
+                {
+                    formABM.style.display = ''; //Se muestra el formulario
+                }
+                else
+                {
+                    console.log("El FORM esta oculto I");
+                } 
+            });
+        });
+        MostrarOcultarColumnas();
+    });
+
+    var btnOrdenarId = document.querySelector('#btnOrdenarId');
+    btnOrdenarId.addEventListener('click', ordenarPorId);
+
+    var btnOrdenarNombre = document.querySelector('#btnOrdenarNombre');
+    btnOrdenarNombre.addEventListener('click', ordenarPorNombre);
+
+    var btnOrdenarApellido = document.querySelector('#btnOrdenarApellido');
+    btnOrdenarApellido.addEventListener('click', ordenarPorApellido);
+
+    //EDAD
+    var btnOrdenarEdad = document.querySelector('#btnOrdenarEdad');
+    btnOrdenarEdad.addEventListener('click', ordenarPorEdad);
+
+    //ALTEREGO
+    var btnOrdenarAlterEgo = document.querySelector('#btnOrdenarAlterEgo');
+    btnOrdenarAlterEgo.addEventListener('click', ordenarPorAlterEgo);
+
+    //CIUDAD
+    var btnOrdenarCiudad = document.querySelector('#btnOrdenarCiudad');
+    btnOrdenarCiudad.addEventListener('click', ordenarPorCiudad);
+
+    //PUBLICADO
+    var btnOrdenarPublicado = document.querySelector('#btnOrdenarPublicado');
+    btnOrdenarPublicado.addEventListener('click', ordenarPorPublicado);
+
+    //ENEMIGOS
+
+    var btnOrdenarEnemigos = document.querySelector('#btnOrdenarEnemigos');
+    btnOrdenarEnemigos.addEventListener('click', ordenarPorEnemigo);
+
+    //ROBOS
+    var btnOrdenarRobos = document.querySelector('#btnOrdenarRobos');
+    btnOrdenarRobos.addEventListener('click', ordenarPorRobos);
+
+    //ASESINATOS
+    var btnOrdenarAsesinatos = document.querySelector('#btnOrdenarAsesinatos');
+    btnOrdenarAsesinatos.addEventListener('click', ordenarPorAsesinatos);
+
+    
+    document.getElementById("btnAceptarForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // evita que se recargue la página al enviar el formulario
+        ABM(tabla);
+        document.getElementById("formABM").reset();
+    });
+
+    document.getElementById("btnModificarForm").addEventListener("submit", function(event) {
+        event.preventDefault(); // evita que se recargue la página al enviar el formulario
+        ABM(tabla);
+        document.getElementById("formABM").reset();
+    });
+
+    document.getElementById("btnEliminarForm").addEventListener("click", function(event) {
+        event.preventDefault(); // evita que se recargue la página al enviar el formulario
+        EliminarPersona(tabla);
+        document.getElementById("formABM").reset();
+
+        var rows = document.querySelectorAll('#tabla-personas tr');
+        rows.forEach(fila => 
+        {
+            fila.addEventListener('click', () =>
+            {
+                CargarFormABMAlSeleccionarFila(fila);
+
+                if (getComputedStyle(tabla).display !== 'none') //Pregunta si la tabla NO ESTA OCULTA
+                {
+                    tabla.style.display = 'none'; //Se oculta la tabla
+                }
+                else
+                {
+                    console.log("La tabla esta oculta I");
+                } 
+
+                if (getComputedStyle(formABM).display === 'none') //Pregunta si el form ESTA OCULTO
+                {
+                    formABM.style.display = ''; //Se muestra el formulario
+                }
+                else
+                {
+                    console.log("El FORM esta oculto I");
+                } 
+            });
         });
 
         MostrarOcultarColumnas();
-
-        //Cargo los datos en el formABM al darle click a una fila
-        var rows = document.querySelectorAll('#tabla-personas tr');
-        tabla.style.display = 'none';
-        CargarFormABMAlSeleccionarFila(rows);
-
-
-        
-        //Muestra el formulario al tocar el boton agregar y oculto la tabla
-        document.getElementById("btnAgregar").addEventListener("click", ()=>{
-            tabla.style.display = 'none';
-            document.getElementById("formABM").style.display = "block";
-        })
-
-        //ABM
-        document.getElementById("formABM").addEventListener("submit", function(event) {
-            event.preventDefault(); // evita que se recargue la página al enviar el formulario
-            ABM(tabla);
-            document.getElementById("formABM").reset();
-        });
-
-        document.getElementById("btnModificarForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // evita que se recargue la página al enviar el formulario
-            ABM(tabla);
-            document.getElementById("formABM").reset();
-        });
-
-        document.getElementById("btnEliminarForm").addEventListener("click", function(event) {
-            event.preventDefault(); // evita que se recargue la página al enviar el formulario
-            EliminarPersona(tabla);
-            document.getElementById("formABM").reset();
-        });
-
-        document.getElementById("btnCancelarForm").addEventListener("click", function(event) {
-            event.preventDefault(); // evita que se recargue la página al enviar el formulario
-            formABM.style.display = 'none';
-            tabla.style.display = '';
-            cargarTabla(arrayPersonas);
-        });
-
-
     });
+
+    document.getElementById("btnCancelarForm").addEventListener("click", function(event) {
+        event.preventDefault(); // evita que se recargue la página al enviar el formulario
+        if (getComputedStyle(formABM).display !== 'none') 
+        {
+            formABM.style.display = 'none'; //Se muestra el formulario
+        }
+
+        if (getComputedStyle(tabla).display === 'none') //Pregunta si el form ESTA OCULTO
+        {
+            tabla.style.display = ''; //Se muestra el formulario
+        }
+
+        cargarTabla(arrayPersonas);
+
+        var rows = document.querySelectorAll('#tabla-personas tr');
+        rows.forEach(fila => 
+        {
+            fila.addEventListener('click', () =>
+            {
+                CargarFormABMAlSeleccionarFila(fila);
+
+                var campoId = document.getElementById('formAtributoUno');
+                // Deshabilitar el elemento
+                if(!campoId.disabled)
+                {
+                    campoId.disabled = true;
+                }
+
+                if (getComputedStyle(tabla).display !== 'none') //Pregunta si la tabla NO ESTA OCULTA
+                {
+                    tabla.style.display = 'none'; //Se oculta la tabla
+                }
+                else
+                {
+                    console.log("La tabla esta oculta I");
+                } 
+
+                if (getComputedStyle(formABM).display === 'none') //Pregunta si el form ESTA OCULTO
+                {
+                    formABM.style.display = ''; //Se muestra el formulario
+                }
+                else
+                {
+                    console.log("El FORM esta oculto I");
+                } 
+            });
+        });
+        document.getElementById("formABM").reset();
+        MostrarOcultarColumnas();
+    });
+});
 
 //#region CARGAR TABLA
 function cargarTabla(personas) {
@@ -325,6 +560,7 @@ function cargarTabla(personas) {
 }
 
 //#endregion
+
 
 //#region  CALCULAR EDAD PROMEDIO
 function CalcularEdadPromedio(selectorTipo)
@@ -490,55 +726,43 @@ function MostrarOcultarColumnas()
 
 //#region COMPLETAR CAMPOS DEL FORMULARIO ABM
 
-function CargarFormABMAlSeleccionarFila(rows)
+function CargarFormABMAlSeleccionarFila(row)
 {
-    var tabla = document.getElementById('tabla-personas');
+    let cells = row.querySelectorAll('td'); //Obtengo los datos de la fila seleccionada
+    let data = []; 
 
-    rows.forEach(row => {
-        row.addEventListener('click', () => {
-
-          formABM.style.display = '';
-          tabla.style.display = 'none';
-
-          let cells = row.querySelectorAll('td'); //Obtengo los datos de la fila seleccionada
-          let data = []; 
-      
-          //Guardo todos los datos de la fila seleccionada en un array 
-          cells.forEach(cell => {
-            data.push(cell.textContent);
-          });
-      
-
-          //Obtengo los elementos, componentes del formulario donde se tienen que plasmar los datos seleccionados
-          let inputId = document.querySelector('#formAtributoUno');
-          let inputNombre = document.querySelector('#formAtributoDos');
-          let inputApellido = document.querySelector('#formAtributoTres');
-          let inputEdad = document.querySelector('#formAtributoCuatro');
-          let inputAlterEgo = document.querySelector('#formAtributoCinco');
-          let inputCiudad = document.querySelector('#formAtributoSeis');
-          let inputPublicado = document.querySelector('#formAtributoSiete');
-          let inputEnemigo = document.querySelector('#formAtributoOcho');
-          let inputRobos = document.querySelector('#formAtributoNueve');
-          let inputAsesinatos = document.querySelector('#formAtributoDiez');
-
-          let selectTipo = document.querySelector('#formTipo');
-      
-            //Plasmo en el FORM, los datos de la fila seleccionada
-            inputId.value = data[0];
-            inputNombre.value = data[1];
-            inputApellido.value = data[2];
-            inputEdad.value = data[3];
-            inputAlterEgo.value = data[4];
-            inputCiudad.value = data[5];
-            inputPublicado.value = data[6];
-            inputEnemigo.value = data[7];
-            inputRobos.value = data[8];
-            inputAsesinatos.value = data[9];
-            selectTipo.value = data[10];
-        });
-        formABM.style.display = 'none';
-        tabla.style.display = '';
+    //Guardo todos los datos de la fila seleccionada en un array 
+    cells.forEach(cell => {
+        data.push(cell.textContent);
     });
+
+
+    //Obtengo los elementos, componentes del formulario donde se tienen que plasmar los datos seleccionados
+    let inputId = document.querySelector('#formAtributoUno');
+    let inputNombre = document.querySelector('#formAtributoDos');
+    let inputApellido = document.querySelector('#formAtributoTres');
+    let inputEdad = document.querySelector('#formAtributoCuatro');
+    let inputAlterEgo = document.querySelector('#formAtributoCinco');
+    let inputCiudad = document.querySelector('#formAtributoSeis');
+    let inputPublicado = document.querySelector('#formAtributoSiete');
+    let inputEnemigo = document.querySelector('#formAtributoOcho');
+    let inputRobos = document.querySelector('#formAtributoNueve');
+    let inputAsesinatos = document.querySelector('#formAtributoDiez');
+
+    let selectTipo = document.querySelector('#formTipo');
+    
+    //Plasmo en el FORM, los datos de la fila seleccionada
+    inputId.value = data[0];
+    inputNombre.value = data[1];
+    inputApellido.value = data[2];
+    inputEdad.value = data[3];
+    inputAlterEgo.value = data[4];
+    inputCiudad.value = data[5];
+    inputPublicado.value = data[6];
+    inputEnemigo.value = data[7];
+    inputRobos.value = data[8];
+    inputAsesinatos.value = data[9];
+    selectTipo.value = data[10];
 }
 
 //#endregion
@@ -560,81 +784,130 @@ function ABM(tabla)
     let inputRobos = document.getElementById('formAtributoNueve').value;
     let inputAsesinatos = document.getElementById('formAtributoDiez').value;
 
+    let publicado = parseInt(inputPublicado);
+    let robos = parseInt(inputRobos);
+    let asesinatos = parseInt(inputAsesinatos);
+    let edad = parseInt(inputEdad);
+
     let selector = document.getElementById('formTipo');
 
     if(selector.value === "Heroe")
     {
         if(inputAlterEgo === undefined || inputAlterEgo === null || inputAlterEgo === "")
         {
-            alert("Campo obligatorio (AlterEgo)");
+            return alert("Campo obligatorio (AlterEgo)");
         }
 
         if(inputCiudad === undefined || inputCiudad === null || inputCiudad === "")
         {
-            alert("Campo obligatorio (Ciudad)");
+            return alert("Campo obligatorio (Ciudad)");
         }
 
         if(inputPublicado === undefined || inputPublicado === null || inputPublicado === "")
         {
-            alert("Campo obligatorio (Publicado)");
+            return alert("Campo obligatorio (Publicado)");
+        }
+
+        if(publicado < 1940)
+        {
+            return alert("El campo publicado no puede ser menor a 1940");
         }
     }
     else
     {
         if(inputEnemigo === undefined || inputEnemigo === null || inputEnemigo === "")
         {
-            alert("Campo obligatorio (Enemigo)");
+            return alert("Campo obligatorio (Enemigo)");
         }
 
         if(inputRobos === undefined || inputRobos === null || inputRobos === "")
         {
-            alert("Campo obligatorio (Robos)");
+            return alert("Campo obligatorio (Robos)");
         }
 
         if(inputAsesinatos === undefined || inputAsesinatos === null || inputAsesinatos === "")
         {
-            alert("Campo obligatorio (Asesinatos)");
+            return alert("Campo obligatorio (Asesinatos)");
         }
     }
 
     var index = arrayPersonas.findIndex(persona => persona.id === idNumerico);
+    var personaEncontrada = arrayPersonas.filter(persona => persona.id === idNumerico);
 
     if (index !== -1)
     {
-        arrayPersonas[index].id = inputId;
-        arrayPersonas[index].nombre = inputNombre;
-        arrayPersonas[index].apellido = inputApellido;
-        arrayPersonas[index].edad = inputEdad;
-        arrayPersonas[index].alterEgo = inputAlterEgo;
-        arrayPersonas[index].ciudad = inputCiudad;
-        arrayPersonas[index].publicado = inputPublicado;
-        arrayPersonas[index].enemigo = inputEnemigo;
-        arrayPersonas[index].robos = inputRobos;
-        arrayPersonas[index].asesinatos = inputAsesinatos;
+        if(selector.value === "Heroe")
+        {
+            arrayPersonas[index].nombre = inputNombre;
+            arrayPersonas[index].apellido = inputApellido;
+            arrayPersonas[index].edad = edad;
+            arrayPersonas[index].alterEgo = inputAlterEgo;
+            arrayPersonas[index].ciudad = inputCiudad;
+            arrayPersonas[index].publicado = publicado;
+            arrayPersonas[index].enemigo = undefined;
+            arrayPersonas[index].robos = undefined;
+            arrayPersonas[index].asesinatos = undefined;
+        }
+        else
+        {
+            arrayPersonas[index].nombre = inputNombre;
+            arrayPersonas[index].apellido = inputApellido;
+            arrayPersonas[index].edad = edad;
+            arrayPersonas[index].alterEgo = undefined;
+            arrayPersonas[index].ciudad = undefined;
+            arrayPersonas[index].publicado = undefined;
+            arrayPersonas[index].enemigo = inputEnemigo;
+            arrayPersonas[index].robos = robos;
+            arrayPersonas[index].asesinatos = asesinatos;
+        }
     }
     else 
-    {
+    {     
+        if(idNumerico)
+        {
+            alert("No se puede ingresar un ID!");
+        }
+        else
+        {
+            var ultimoId = arrayPersonas.reduce((maxId, persona) => {
+                return persona.id > maxId ? persona.id : maxId;
+            }, 0);
 
+            if(selector.value === "Heroe")
+            {
+                var heroe = {
+                    "id": ultimoId + 1,
+                    "nombre": inputNombre,
+                    "apellido": inputApellido,
+                    "edad": edad,
+                    "alterego": inputAlterEgo,
+                    "ciudad": inputCiudad,
+                    "publicado": publicado
+                };
 
-        var persona = {
-            "nombre": inputNombre,
-            "apellido": inputApellido,
-            "edad": inputEdad,
-            "alterego": inputAlterEgo,
-            "ciudad": inputCiudad,
-            "publicado": inputPublicado,
-            "enemigo": inputEnemigo,
-            "robos": inputRobos,
-            "asesinatos": inputAsesinatos
-        };
-
-        arrayPersonas.push(persona); // agrega la persona al array
+                arrayPersonas.push(heroe); // agrega la persona al array
+            }
+            else
+            {
+                var villano = {
+                    "id": ultimoId + 1,
+                    "nombre": inputNombre,
+                    "apellido": inputApellido,
+                    "edad": edad,
+                    "enemigo": inputEnemigo,
+                    "robos": robos,
+                    "asesinatos": asesinatos
+                };
+          
+                arrayPersonas.push(villano); // agrega la persona al array
+            }
+        }
     }
 
-    //Muestro la tabla de vuelta, oculto el formulario y la cargo nuevamente
-    formABM.style.display = 'none';
-    tabla.style.display = '';
+    //Cargo la tabla nuevamente
     cargarTabla(arrayPersonas);
+    tabla.style.display = '';
+    formABM.style.display = 'none';
 }
 
 //#endregion
@@ -645,26 +918,338 @@ function EliminarPersona(tabla)
 {
     let inputId = document.getElementById('formAtributoUno').value;
     let idNumerico = parseInt(inputId);
-    
-    var index = arrayPersonas.findIndex(persona => persona.id === idNumerico);
-    if (index !== -1)
-    {
-        arrayPersonas.splice(index, 1);
-    }
-    else 
-    {
-        alert("La persona que desea eliminar, no existe... Por favor, vuelta a intentarlo");
-    }
 
-    //Muestro la tabla de vuelta, oculto el formulario y la cargo nuevamente
-    formABM.style.display = 'none';
-    tabla.style.display = '';
+    if(!inputId)
+    {
+        alert("No se pudo realizar la operacion");
+    }
+    else
+    {
+        var index = arrayPersonas.findIndex(persona => persona.id === idNumerico);
+        if (index !== -1)
+        {
+            arrayPersonas.splice(index, 1);
+        }
+        else
+        {
+            alert("La persona que desea eliminar, no existe... Por favor, vuelta a intentarlo");
+        }
+    }
+    
+    //Cargo la tabla nuevamente
     cargarTabla(arrayPersonas);
+    tabla.style.display = '';
+    formABM.style.display = 'none';
 }
 
 //#endregion
 
+//#region ORDENAMIENTOS
 
+
+function ordenarPorId() {
+    var columna = document.querySelector('th[data-ordenId]');
+    var ordenActual = columna.getAttribute('data-ordenId');
+    var indiceColumna = columna.cellIndex;
+    var filas = Array.from(document.querySelectorAll('tbody tr'));
+
+    // Ordena los datos según el estado actual
+    if (ordenActual === 'asc') {
+        filas.sort((a, b) => {
+            let valorA = a.cells[indiceColumna].textContent;
+            let valorB = b.cells[indiceColumna].textContent;
+            return valorA - valorB;
+        });
+        columna.setAttribute('data-ordenId', 'desc');
+    } else {
+        filas.sort((a, b) => {
+            let valorA = a.cells[indiceColumna].textContent;
+            let valorB = b.cells[indiceColumna].textContent;
+            return valorB - valorA;
+        });
+        columna.setAttribute('data-ordenId', 'asc');
+    }
+
+    // Vuelve a agregar las filas ordenadas a la tabla
+    var tbody = document.querySelector('#tabla-personas tbody');
+    filas.forEach(fila => {
+        tbody.appendChild(fila);
+    });
+}
+
+
+function ordenarPorNombre() {
+    var columna = document.querySelector('th[data-ordenNombre]');
+    var ordenActual = columna.getAttribute('data-ordenNombre');
+    var indiceColumna = columna.cellIndex;
+    var filas = Array.from(document.querySelectorAll('tbody tr'));
+
+    // Ordena los datos según el estado actual
+    if (ordenActual === 'asc') {
+        filas.sort((a, b) => {
+        var valorA = a.cells[indiceColumna].textContent.toLowerCase();
+        var valorB = b.cells[indiceColumna].textContent.toLowerCase();
+        return valorA.localeCompare(valorB);
+        });
+        columna.setAttribute('data-ordenNombre', 'desc');
+    } else {
+        filas.sort((a, b) => {
+        var valorA = a.cells[indiceColumna].textContent.toLowerCase();
+        var valorB = b.cells[indiceColumna].textContent.toLowerCase();
+        return valorB.localeCompare(valorA);
+        });
+        columna.setAttribute('data-ordenNombre', 'asc');
+    }
+
+    // Vuelve a agregar las filas ordenadas a la tabla
+    var tbody = document.querySelector('#tabla-personas tbody');
+    filas.forEach(fila => {
+        tbody.appendChild(fila);
+    });
+}
+
+function ordenarPorApellido() {
+    var columna = document.querySelector('th[data-ordenApellido]');
+    var ordenActual = columna.getAttribute('data-ordenApellido');
+    var indiceColumna = columna.cellIndex;
+    var filas = Array.from(document.querySelectorAll('tbody tr'));
+
+    // Ordena los datos según el estado actual
+    if (ordenActual === 'asc') {
+        filas.sort((a, b) => {
+        var valorA = a.cells[indiceColumna].textContent.toLowerCase();
+        var valorB = b.cells[indiceColumna].textContent.toLowerCase();
+        return valorA.localeCompare(valorB);
+        });
+        columna.setAttribute('data-ordenApellido', 'desc');
+    } else {
+        filas.sort((a, b) => {
+        var valorA = a.cells[indiceColumna].textContent.toLowerCase();
+        var valorB = b.cells[indiceColumna].textContent.toLowerCase();
+        return valorB.localeCompare(valorA);
+        });
+        columna.setAttribute('data-ordenApellido', 'asc');
+    }
+
+    // Vuelve a agregar las filas ordenadas a la tabla
+    var tbody = document.querySelector('#tabla-personas tbody');
+    filas.forEach(fila => {
+        tbody.appendChild(fila);
+    });
+}
+
+
+function ordenarPorEdad() {
+    var columna = document.querySelector('th[data-ordenEdad]');
+    var ordenActual = columna.getAttribute('data-ordenEdad');
+    var indiceColumna = columna.cellIndex;
+    var filas = Array.from(document.querySelectorAll('tbody tr'));
+
+    if (ordenActual === 'asc') {
+        filas.sort((a, b) => {
+            let valorA = a.cells[indiceColumna].textContent;
+            let valorB = b.cells[indiceColumna].textContent;
+            return valorA - valorB;
+        });
+        columna.setAttribute('data-ordenEdad', 'desc');
+    } else {
+        filas.sort((a, b) => {
+            let valorA = a.cells[indiceColumna].textContent;
+            let valorB = b.cells[indiceColumna].textContent;
+            return valorB - valorA;
+        });
+        columna.setAttribute('data-ordenEdad', 'asc');
+    }
+
+    // Vuelve a agregar las filas ordenadas a la tabla
+    var tbody = document.querySelector('#tabla-personas tbody');
+    filas.forEach(fila => {
+        tbody.appendChild(fila);
+    });
+}
+
+function ordenarPorAlterEgo() {
+    var columna = document.querySelector('th[data-ordenAlterEgo]');
+    var ordenActual = columna.getAttribute('data-ordenAlterEgo');
+    var indiceColumna = columna.cellIndex;
+    var filas = Array.from(document.querySelectorAll('tbody tr'));
+
+    // Ordena los datos según el estado actual
+    if (ordenActual === 'asc') {
+        filas.sort((a, b) => {
+        var valorA = a.cells[indiceColumna].textContent.toLowerCase();
+        var valorB = b.cells[indiceColumna].textContent.toLowerCase();
+        return valorA.localeCompare(valorB);
+        });
+        columna.setAttribute('data-ordenAlterEgo', 'desc');
+    } else {
+        filas.sort((a, b) => {
+        var valorA = a.cells[indiceColumna].textContent.toLowerCase();
+        var valorB = b.cells[indiceColumna].textContent.toLowerCase();
+        return valorB.localeCompare(valorA);
+        });
+        columna.setAttribute('data-ordenAlterEgo', 'asc');
+    }
+
+    // Vuelve a agregar las filas ordenadas a la tabla
+    var tbody = document.querySelector('#tabla-personas tbody');
+    filas.forEach(fila => {
+        tbody.appendChild(fila);
+    });
+}
+
+function ordenarPorCiudad() {
+    var columna = document.querySelector('th[data-ordenCiudad]');
+    var ordenActual = columna.getAttribute('data-ordenCiudad');
+    var indiceColumna = columna.cellIndex;
+    var filas = Array.from(document.querySelectorAll('tbody tr'));
+
+    // Ordena los datos según el estado actual
+    if (ordenActual === 'asc') {
+        filas.sort((a, b) => {
+        var valorA = a.cells[indiceColumna].textContent.toLowerCase();
+        var valorB = b.cells[indiceColumna].textContent.toLowerCase();
+        return valorA.localeCompare(valorB);
+        });
+        columna.setAttribute('data-ordenCiudad', 'desc');
+    } else {
+        filas.sort((a, b) => {
+        var valorA = a.cells[indiceColumna].textContent.toLowerCase();
+        var valorB = b.cells[indiceColumna].textContent.toLowerCase();
+        return valorB.localeCompare(valorA);
+        });
+        columna.setAttribute('data-ordenCiudad', 'asc');
+    }
+
+    // Vuelve a agregar las filas ordenadas a la tabla
+    var tbody = document.querySelector('#tabla-personas tbody');
+    filas.forEach(fila => {
+        tbody.appendChild(fila);
+    });
+}
+
+function ordenarPorPublicado() {
+    var columna = document.querySelector('th[data-ordenPublicado]');
+    var ordenActual = columna.getAttribute('data-ordenPublicado');
+    var indiceColumna = columna.cellIndex;
+    var filas = Array.from(document.querySelectorAll('tbody tr'));
+
+    // Ordena los datos según el estado actual
+    if (ordenActual === 'asc') {
+        filas.sort((a, b) => {
+            let valorA = a.cells[indiceColumna].textContent;
+            let valorB = b.cells[indiceColumna].textContent;
+            return valorA - valorB;
+        });
+        columna.setAttribute('data-ordenPublicado', 'desc');
+    } else {
+        filas.sort((a, b) => {
+            let valorA = a.cells[indiceColumna].textContent;
+            let valorB = b.cells[indiceColumna].textContent;
+            return valorB - valorA;
+        });
+        columna.setAttribute('data-ordenPublicado', 'asc');
+    }
+
+    // Vuelve a agregar las filas ordenadas a la tabla
+    var tbody = document.querySelector('#tabla-personas tbody');
+    filas.forEach(fila => {
+        tbody.appendChild(fila);
+    });
+}
+
+function ordenarPorEnemigo() {
+    var columna = document.querySelector('th[data-ordenEnemigo]');
+    var ordenActual = columna.getAttribute('data-ordenEnemigo');
+    var indiceColumna = columna.cellIndex;
+    var filas = Array.from(document.querySelectorAll('tbody tr'));
+
+    // Ordena los datos según el estado actual
+    if (ordenActual === 'asc') {
+        filas.sort((a, b) => {
+        var valorA = a.cells[indiceColumna].textContent.toLowerCase();
+        var valorB = b.cells[indiceColumna].textContent.toLowerCase();
+        return valorA.localeCompare(valorB);
+        });
+        columna.setAttribute('data-ordenEnemigo', 'desc');
+    } else {
+        filas.sort((a, b) => {
+        var valorA = a.cells[indiceColumna].textContent.toLowerCase();
+        var valorB = b.cells[indiceColumna].textContent.toLowerCase();
+        return valorB.localeCompare(valorA);
+        });
+        columna.setAttribute('data-ordenEnemigo', 'asc');
+    }
+
+    // Vuelve a agregar las filas ordenadas a la tabla
+    var tbody = document.querySelector('#tabla-personas tbody');
+    filas.forEach(fila => {
+        tbody.appendChild(fila);
+    });
+}
+
+function ordenarPorRobos() {
+    var columna = document.querySelector('th[data-ordenRobos]');
+    var ordenActual = columna.getAttribute('data-ordenRobos');
+    var indiceColumna = columna.cellIndex;
+    var filas = Array.from(document.querySelectorAll('tbody tr'));
+
+    // Ordena los datos según el estado actual
+    if (ordenActual === 'asc') {
+        filas.sort((a, b) => {
+            let valorA = a.cells[indiceColumna].textContent;
+            let valorB = b.cells[indiceColumna].textContent;
+            return valorA - valorB;
+        });
+        columna.setAttribute('data-ordenRobos', 'desc');
+    } else {
+        filas.sort((a, b) => {
+            let valorA = a.cells[indiceColumna].textContent;
+            let valorB = b.cells[indiceColumna].textContent;
+            return valorB - valorA;
+        });
+        columna.setAttribute('data-ordenRobos', 'asc');
+    }
+
+    // Vuelve a agregar las filas ordenadas a la tabla
+    var tbody = document.querySelector('#tabla-personas tbody');
+    filas.forEach(fila => {
+        tbody.appendChild(fila);
+    });
+}
+
+function ordenarPorAsesinatos() {
+    var columna = document.querySelector('th[data-ordenAsesinatos]');
+    var ordenActual = columna.getAttribute('data-ordenAsesinatos');
+    var indiceColumna = columna.cellIndex;
+    var filas = Array.from(document.querySelectorAll('tbody tr'));
+
+    // Ordena los datos según el estado actual
+    if (ordenActual === 'asc') {
+        filas.sort((a, b) => {
+            let valorA = a.cells[indiceColumna].textContent;
+            let valorB = b.cells[indiceColumna].textContent;
+            return valorA - valorB;
+        });
+        columna.setAttribute('data-ordenAsesinatos', 'desc');
+    } else {
+        filas.sort((a, b) => {
+            let valorA = a.cells[indiceColumna].textContent;
+            let valorB = b.cells[indiceColumna].textContent;
+            return valorB - valorA;
+        });
+        columna.setAttribute('data-ordenAsesinatos', 'asc');
+    }
+
+    // Vuelve a agregar las filas ordenadas a la tabla
+    var tbody = document.querySelector('#tabla-personas tbody');
+    filas.forEach(fila => {
+        tbody.appendChild(fila);
+    });
+}
+
+
+//#endregion
 
 
 //#region Clases
